@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var bottomLayoutGuideConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,6 +29,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginDidTouch(_ sender: AnyObject) {
+        if nameField?.text != "" {
+            Auth.auth().signInAnonymously() { (user, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
+                self.performSegue(withIdentifier: "LoginCompleted", sender: nil)
+            }
+        }
     }
     
     // MARK: - Notifications
@@ -33,11 +45,11 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillShowNotification(_ notification: Notification) {
         let keyboardEndFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
-        bottomLayoutGuideConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
+        bottomConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
     }
     
     @objc func keyboardWillHideNotification(_ notification: Notification) {
-        bottomLayoutGuideConstraint.constant = 48
+        bottomConstraint.constant = 48
     }
 
 
