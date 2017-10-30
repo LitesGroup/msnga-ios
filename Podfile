@@ -2,6 +2,7 @@
 target 'msnga' do
   use_frameworks!
   pod 'Firebase/Messaging'
+  pod 'Firebase/Database'
   pod 'Firebase/Auth'
   # Pods for msnga
 

@@ -8,25 +8,58 @@
 
 import Foundation
 import Firebase
+import FirebaseDatabase
 
 class ChatListController: UITableViewController {
     
+var senderName: String?
+var newChatTextField: UITextField?
+private var channels: [Channel] = []
+private var chatRef: DatabaseReference = Database.database().reference().child("channels")
+private var chatRefHandle: DatabaseHandle?
+
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        channels.append(Channel(id: "1", name: "Sports"))
-        channels.append(Channel(id: "2", name: "Politics"))
-        channels.append(Channel(id: "3", name: "Video Games"))
+        channels.removeAll()
+        observeChats()
         self.tableView.reloadData()
+    }
+    
+    deinit {
+        if let refHandle = chatRefHandle {
+            chatRef.removeObserver(withHandle: refHandle)
+        }
+    }
+    
+    @IBAction func createChannel(_ sender: AnyObject){
+        if let name = newChatTextField?.text {
+            let newChatRef = chatRef.childByAutoId()
+            let channelItem = [
+                "name": name
+            ]
+            newChatRef.setValue(channelItem)
+        }
+        newChatTextField?.text = ""
+    }
+    
+    public func observeChats(){
+        chatRefHandle = chatRef.observe(.childAdded, with: { (snapshot) -> Void in
+            let chatData = snapshot.value as! Dictionary<String,AnyObject>
+            let id = snapshot.key
+            if let name = chatData["name"] as! String!, name.count > 0 {
+                self.channels.append(Channel(id: id, name: name))
+                self.tableView.reloadData()
+            } else {
+                print("ERROR!")
+            }
+        })
     }
     
 enum Section: Int {
     case createNewChatSection = 0
     case currentChatSection
 }
-
-var senderName: String?
-var newChatTextField: UITextField?
-private var channels: [Channel] = []
 
 override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
@@ -57,6 +90,13 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == Section.currentChatSection.rawValue {
+            let channel = channels[(indexPath as NSIndexPath).row]
+            self.performSegue(withIdentifier: "ChannelSelected", sender: channel)
+        }
     }
     
     

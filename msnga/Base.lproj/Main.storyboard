@@ -23,7 +23,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="135" id="Rft-vP-tVL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="28"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -95,6 +95,9 @@
                                                 <constraint firstAttribute="width" constant="69" id="Ngb-hi-Nub"/>
                                             </constraints>
                                             <state key="normal" title="Create"/>
+                                            <connections>
+                                                <action selector="createChannel:" destination="bLR-mf-B7W" eventType="touchUpInside" id="cUc-dc-Ntg"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -134,10 +137,29 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZuC-KI-27R"/>
+                    <connections>
+                        <segue destination="uNt-1T-iZp" kind="show" identifier="ChannelSelected" id="aZh-hm-8vh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTS-24-gS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2040.8" y="133.5832083958021"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="C8j-cd-TIu">
+            <objects>
+                <viewController title="Messages" id="uNt-1T-iZp" customClass="ChatViewController" customModule="msnga" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sxL-7A-nG8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sbH-jX-Mt5"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Back" id="QGM-hY-Qf0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gN-FL-aU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kIH-sF-Euc">

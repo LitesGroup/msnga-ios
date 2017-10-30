@@ -10,6 +10,7 @@
 		1BAB0213D0BD1A8F3426C9BA /* Pods_msnga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256D14AB4E417E0EA43FE05C /* Pods_msnga.framework */; };
 		6F1EA7551FA04F53001833C0 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EA7541FA04F53001833C0 /* Channel.swift */; };
 		6F1EA7581FA054BF001833C0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EA7571FA054BF001833C0 /* LoginViewController.swift */; };
+		6F5FC5681FA6C3720074E6B1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FC5671FA6C3720074E6B1 /* ChatViewController.swift */; };
 		6F7F5C471FA0358C00FBC934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7F5C461FA0358C00FBC934 /* AppDelegate.swift */; };
 		6F7F5C491FA0358C00FBC934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7F5C481FA0358C00FBC934 /* ViewController.swift */; };
 		6F7F5C4C1FA0358C00FBC934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7F5C4A1FA0358C00FBC934 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		5A6418A1B7A1713076793D55 /* Pods-msnga-msngaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msnga-msngaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-msnga-msngaTests/Pods-msnga-msngaTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F1EA7541FA04F53001833C0 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		6F1EA7571FA054BF001833C0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6F5FC5671FA6C3720074E6B1 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		6F7F5C431FA0358C00FBC934 /* msnga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = msnga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7F5C461FA0358C00FBC934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F7F5C481FA0358C00FBC934 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				6F1EA7571FA054BF001833C0 /* LoginViewController.swift */,
 				6F8FAD0A1FA2E3DB00D990D7 /* ChatListController.swift */,
+				6F5FC5671FA6C3720074E6B1 /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -361,6 +365,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +434,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -436,6 +442,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +478,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -478,6 +486,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +534,7 @@
 				6F1EA7581FA054BF001833C0 /* LoginViewController.swift in Sources */,
 				6F7F5C491FA0358C00FBC934 /* ViewController.swift in Sources */,
 				6F1EA7551FA04F53001833C0 /* Channel.swift in Sources */,
+				6F5FC5681FA6C3720074E6B1 /* ChatViewController.swift in Sources */,
 				6F7F5C471FA0358C00FBC934 /* AppDelegate.swift in Sources */,
 				6F8FAD0B1FA2E3DB00D990D7 /* ChatListController.swift in Sources */,
 				6F8FAD0E1FA2E8A600D990D7 /* CreateChatCell.swift in Sources */,
