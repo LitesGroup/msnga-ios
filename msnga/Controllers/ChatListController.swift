@@ -99,5 +99,15 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let channel = sender as? Channel {
+            let chatVc = segue.destination as! ChatViewController
+            chatVc.senderDisplayName = senderName
+            chatVc.chat = channel
+            chatVc.chatRef = chatRef.child(channel.id)
+        }
+    }
+    
     
 }

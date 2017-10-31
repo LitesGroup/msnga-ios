@@ -40,6 +40,14 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        let navVc = segue.destination as! UINavigationController
+        let channelVc = navVc.viewControllers.first as! ChatListController
+        
+        channelVc.senderName = nameField?.text
+    }
+    
     // MARK: - Notifications
     
     @objc func keyboardWillShowNotification(_ notification: Notification) {
