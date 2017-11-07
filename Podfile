@@ -5,6 +5,7 @@ target 'msnga' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Alamofire'
+  pod 'SwiftyJSON'
   pod 'JSQMessagesViewController'
   # Pods for msnga
 

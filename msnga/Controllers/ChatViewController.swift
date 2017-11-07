@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import JSQMessagesViewController
 import Alamofire
+import SwiftyJSON
 
 final class ChatViewController: JSQMessagesViewController
 {
@@ -70,8 +71,9 @@ final class ChatViewController: JSQMessagesViewController
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
+    private func addMessage(withId id: String, name: String, text: String, sent: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+            message.accessibilityValue = sent;
             messages.append(message)
         }
     }
@@ -85,17 +87,47 @@ final class ChatViewController: JSQMessagesViewController
         } else {
             cell.textView?.textColor = UIColor.black
         }
+        if (message.accessibilityValue?.count != 0) {
+            let sent = Float(message.accessibilityValue!)
+            if(sent! >= 0.1)
+            {
+                cell.textView?.backgroundColor = UIColor.green
+            }
+            else {
+                cell.textView?.backgroundColor = UIColor.red
+            }
+        }
+        
         return cell
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let item = messageRef.childByAutoId()
+        let params: Parameters = [
+            "sentence": text
+        ]
+        Alamofire.request("http://127.0.0.1:8000/parse", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (responseData) -> Void in
+            if((responseData.result.value) != nil) {
+                let swiftyVar = JSON(responseData.result.value!)
+                print(swiftyVar["compound"])
+            
         let messageItem = [
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
-        ]
+            "sentimentScore": swiftyVar["compound"].stringValue
+            ] as [String: Any]
         item.setValue(messageItem)
+        }
+            else{
+                let messageItem = [
+                    "senderId": senderId!,
+                    "senderName": senderDisplayName!,
+                    "text": text!
+                ]
+                item.setValue(messageItem)
+            }
+        }
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
     }
@@ -105,8 +137,8 @@ final class ChatViewController: JSQMessagesViewController
         let msgqry = messageRef.queryLimited(toLast: 25)
         messageRefHandle = msgqry.observe(.childAdded, with: {(snapshot) -> Void in
             let msgdata = snapshot.value as! Dictionary<String,String>
-            if let id = msgdata["senderId"] as String!, let name = msgdata["senderName"] as String!, let text = msgdata["text"] as String!, text.count > 0 {
-                self.addMessage(withId: id, name: name, text: text)
+            if let id = msgdata["senderId"] as String!, let name = msgdata["senderName"] as String!, let text = msgdata["text"] as String!, let sent = msgdata["sentimentScore"] as String!, text.count > 0 {
+                self.addMessage(withId: id, name: name, text: text, sent: sent ?? "0")
                 self.finishReceivingMessage()
             }
             else{
