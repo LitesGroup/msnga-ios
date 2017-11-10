@@ -128,7 +128,7 @@ final class ChatViewController: JSQMessagesViewController
         let params: Parameters = [
             "sentence": text
         ]
-        Alamofire.request("http://127.0.0.1:8000/parse", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (responseData) -> Void in
+        Alamofire.request("https://api.litesgroup.org/parse", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyVar = JSON(responseData.result.value!)
                 print(swiftyVar["compound"])
