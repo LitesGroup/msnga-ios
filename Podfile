@@ -5,8 +5,10 @@ target 'msnga' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Alamofire'
+  pod 'FacebookLogin'
   pod 'SwiftyJSON'
   pod 'JSQMessagesViewController'
+  pod 'FBSDKLoginKit'
   # Pods for msnga
 
   target 'msngaTests' do
