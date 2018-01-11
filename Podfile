@@ -9,6 +9,7 @@ target 'msnga' do
   pod 'SwiftyJSON'
   pod 'JSQMessagesViewController'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
   # Pods for msnga
 
   target 'msngaTests' do
